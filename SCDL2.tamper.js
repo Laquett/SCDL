@@ -24,7 +24,7 @@ window.scdl2_adolf = 0;
 scdl2_elemets_that_have = [];
 
 window.scdl2_client_id = getSCDL2id();
-console.log("scdl2_started");
+//console.log("scdl2_started");
 
 
 function setup_scdl2() {
@@ -42,25 +42,70 @@ var interval1Id = setInterval(function() {
     //alert(amountofsharebtns);
     if (amountofsharebtns != window.scdl2_counter_1 && amountofsharebtns > 0 || window.scdl2_last_url != document.URL ) {
         insert_button();
-        listen_scdl2();
         //window.scdl2_counter_1 = document.querySelectorAll('scdl2_btn_start');
         //int.document.write("window.scdl2_counter_1: " + window.scdl2_counter_1 + "<br>");
         //int.document.write("amountofsharebtns: " + amountofsharebtns + "<br>");
         window.scdl2_counter_1 = amountofsharebtns;
+        //placePLDownloadButton();
     }
     updateloaderelement();
-    console.log("UUUUUUUUUUUUUUUUUUUUUUUU");
     putinadolf();
     window.scdl2_last_url = document.URL;
-}, 3000);
+}, 20000);
 
+function placePDDownloadButton() {
+    var a_scpldl2 = document.createElement('a');
+    var scplText2 = document.createTextNode("DLPL2!");
+    a_scpldl2.appendChild(scplText2);
+    a_scpldl2.title = "Download Playlist";
+    a_scpldl2.className = "scpldl_btn2_start moreActions__button sc-button-medium sc-button-responsive";
+
+    var elems = document.getElementsByTagName('*'),
+        i;
+
+    for (i in elems) {
+        var niijuuu = elems[i].className;
+        if (typeof niijuuu !== 'undefined') {
+            if (elems[i].className.indexOf("moreActions__button") > -1) {
+                var gotitnot = true;
+                for (io = 0; io < scdl2_elemets_that_have.length; ++io) {
+                    if (scdl2_elemets_that_have[io].isSameNode(elems[i].parentNode)) {
+                        gotitnot = false;
+                    }
+                    //console.log("oihwedelighlishdgflikhsdlikghlkishdglkhsdlkghlskdgh");
+                }
+                if (gotitnot) {
+                    //console.log(elems[i].className)
+                    var kiddies = elems[i].childNodes;
+                    //console.log(elems[i].childNodes);
+                    //console.log(elems[i].childNodes[1].className);
+
+                    for (yts = 0; yts < kiddies.length; ++yts) {
+
+                        //wnd.document.write("kiddies[yts].className: " + kiddies[yts].className + "<br>");
+                        //console.log(kiddies[yts].className);
+                        // If line is at the top, make a button for the playlist download
+                        if (kiddies[yts].className && kiddies[yts].className.indexOf("sc-button-medium") > -1 && kiddies[yts].className.indexOf("scpldl_btn2_start") < 0) {
+                            var clone_a = a_scpldl2.cloneNode(true);
+                            clone_a.addEventListener("click", function() {
+                                Playlist_Download_Button(this);
+                            }, true);
+                            elems[i].appendChild(clone_a);
+                            yts = kiddies.length;
+                            scdl2_elemets_that_have.push(elems[i].parentNode);
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
 
 function putinadolf() {
     if (window.scdl2_adolf == 0) {
         var mnfgtjy = document.getElementsByClassName('listenNetworkSidebar')[0];
         if (typeof mnfgtjy !== "undefined") {
             var ifrm = document.createElement("iframe");
-            
 
             var sdf2 = document.URL.split("/");
             if (sdf2.length = 5) {
@@ -144,8 +189,8 @@ function insert_button() {
                             elems[i].appendChild(clone_a);
                             yts = kiddies.length;
                             scdl2_elemets_that_have.push(elems[i].parentNode);
-                        } else {
-                            console.log("do fucking nothing");
+                        //} else {
+                        //    console.log("do fucking nothing");
                         }
                     }
                 }
@@ -168,12 +213,21 @@ function Playlist_Download_Button(diese) {
     //actual_listener_event(rgrgrgrg23[0]);
     //actual_listener_event(rgrgrgrg23[1]);
     //actual_listener_event(rgrgrgrg23[99]);
-    for (i=0; i < rgrgrgrg23.length; ++i)
-        actual_listener_event(rgrgrgrg23[i]);
-}
 
-function listen_scdl2() {
-    console.log("scdl2_adds listener");
+    var i = 0;
+
+    actual_listener_event(rgrgrgrg23[i]);
+    ++i;
+
+    var pldl = setInterval(function(){
+
+        actual_listener_event(rgrgrgrg23[i]);
+        ++i;
+
+        if (i === rgrgrgrg23.length)
+            clearInterval(pldl);
+
+    }, 10000);
 }
 
 function actual_listener_event(diese) {
@@ -266,7 +320,7 @@ function sendformscdl2final(dllinksc) {
 
     console.log(dllinksc);
 
-    return;
+    //return;
 
 
 
