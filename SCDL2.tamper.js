@@ -329,7 +329,7 @@ function sendformscdl2final(dllinksc) {
             if (data.hasOwnProperty('error')) {
                 //$("#loadingscdl2").hide();
                 currentlydl(-1);
-                console.log(data.error + dllinksc);
+                console.log(data.error + " " + dllinksc);
             } else {
                 //window.location.replace("https://w394l116.hoststar.ch/scdl/scdlDL.php?url="+data.dlfileurl);
                 OpenInNewTab("https://mrvv.net/scdl/scdlDL.php?url=" + data.dlfileurl);
