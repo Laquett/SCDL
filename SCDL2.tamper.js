@@ -304,21 +304,17 @@ function sendformscdl2final(dllinksc) {
 
     currentlydl(1);
 
-//    var delimiter = '?';
+    var delimiter = '?';
 
-//    var tokens = dllinksc.split(delimiter),
-//        dllinksc = tokens[0] + "?" + tokens[1];
+    var tokens = dllinksc.split(delimiter),
+        dllinksc = tokens[0] + "?" + tokens[1];
 
     if (dllinksc.indexOf("?in=") > -1)
         dllinksc = dllinksc.split("?in=").shift();
 
-    //alert(dllinksc);
-    //if ((wnd === null) || (wnd.closed))
-    //    var wnd = window.open("about:blank", "", "_blank");
-
     //wnd.document.write("dllinksc: " + dllinksc + "<br>");
 
-    console.log(dllinksc);
+    //console.log(dllinksc);
 
     //return;
 
@@ -328,12 +324,12 @@ function sendformscdl2final(dllinksc) {
     anHttpRequest.onreadystatechange = function() {
         if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200) {
             var data = JSON.parse(anHttpRequest.responseText);
-            //console.log(anHttpRequest.responseText);
+            console.log(anHttpRequest.responseText);
 
             if (data.hasOwnProperty('error')) {
                 //$("#loadingscdl2").hide();
                 currentlydl(-1);
-                console.log(data.error);
+                console.log(data.error + dllinksc);
             } else {
                 //window.location.replace("https://w394l116.hoststar.ch/scdl/scdlDL.php?url="+data.dlfileurl);
                 OpenInNewTab("https://mrvv.net/scdl/scdlDL.php?url=" + data.dlfileurl);
@@ -343,9 +339,9 @@ function sendformscdl2final(dllinksc) {
 
     };
 
-    // anHttpRequest.open("GET", "https://mrvv.net/scdl/scdlSC.php?url=" + dllinksc, true);
+    anHttpRequest.open("GET", "https://mrvv.net/scdl/scdlSC.php?url=" + dllinksc, true);
 
-    // anHttpRequest.send(null);
+    anHttpRequest.send(null);
 
 }
 
